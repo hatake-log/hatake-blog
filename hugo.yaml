@@ -36,6 +36,7 @@ params:
   ShowRssButtonInSectionTermList: true
   comments: false # コメント機能無し
   hideSummary: false
+  disableSpecial1stPost: true # 最新記事を大きく表示せず全記事同じカードで並べる
 
   # homeInfoParams は使わない（ヘッダーのロゴと h1 が重複するため。
   # トップはロゴ + 記事一覧のシンプル構成。タグライン付きに戻す場合は
