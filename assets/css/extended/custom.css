@@ -1,0 +1,41 @@
+/* ポイントカラー: 淡い卵色（クリームイエロー） */
+:root {
+    --accent-cream: #fbf3d8;        /* タグの背景 */
+    --accent-cream-deep: #f5e9bc;   /* タグの hover */
+    --accent-cream-border: #eddfa9; /* タグの枠線 */
+    --accent-cream-text: #6f6134;   /* クリーム地の上の文字色 */
+    --accent-dot: #fcdb46;          /* 見出しの丸 */
+}
+
+:root[data-theme="dark"] {
+    --accent-cream: rgba(242, 214, 107, 0.14);
+    --accent-cream-deep: rgba(242, 214, 107, 0.24);
+    --accent-cream-border: rgba(242, 214, 107, 0.30);
+    --accent-cream-text: #d9c98a;
+    --accent-dot: #edd453;
+}
+
+/* 記事下のタグ・タグ一覧ページのタグをクリーム色に */
+.post-tags a,
+.terms-tags a {
+    background: var(--accent-cream);
+    border: 1px solid var(--accent-cream-border);
+    color: var(--accent-cream-text);
+}
+
+.post-tags a:hover,
+.terms-tags a:hover {
+    background: var(--accent-cream-deep);
+}
+
+/* h2 の先頭に小さな黄色い丸 */
+.post-content h2::before {
+    content: "";
+    display: inline-block;
+    width: 0.45em;
+    height: 0.45em;
+    border-radius: 50%;
+    background: var(--accent-dot);
+    margin-right: 0.45em;
+    vertical-align: 0.12em;
+}
