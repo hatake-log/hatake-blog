@@ -1,0 +1,7 @@
+# CLAUDE.md はローカル専用（匿名運用の方針・LAN 情報を含むため公開リポジトリに載せない）
+CLAUDE.md
+.claude/
+
+public/
+resources/_gen/
+.hugo_build.lock

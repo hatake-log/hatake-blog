@@ -1,0 +1,68 @@
+baseURL: https://hatake-log.pages.dev/
+languageCode: ja
+defaultContentLanguage: ja
+title: Hatake Log
+theme: PaperMod
+
+hasCJKLanguage: true
+timeZone: Asia/Tokyo
+enableRobotsTXT: true
+
+# 外部サービスは一切使わない（匿名運用方針）
+# googleAnalytics は設定しない・コメントサービスも導入しない
+enableEmoji: true
+
+pagination:
+  pagerSize: 10
+
+privacy:
+  vimeo:
+    disabled: true
+  x:
+    disabled: true
+  instagram:
+    disabled: true
+  youtube:
+    privacyEnhanced: true
+
+params:
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowCodeCopyButtons: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowToc: true
+  ShowShareButtons: false # SNSシェアボタン無し
+  ShowRssButtonInSectionTermList: true
+  comments: false # コメント機能無し
+  hideSummary: false
+
+  homeInfoParams:
+    Title: Hatake Log
+    Content: Codablecash を触りながら学ぶ記録
+
+  # socialIcons は設定しない（SNS連携無し）
+
+menu:
+  main:
+    - identifier: posts
+      name: 記事
+      url: /posts/
+      weight: 10
+    - identifier: archives
+      name: アーカイブ
+      url: /archives/
+      weight: 20
+    - identifier: tags
+      name: タグ
+      url: /tags/
+      weight: 30
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: false
+  highlight:
+    noClasses: false
+    codeFences: true
+    guessSyntax: true
