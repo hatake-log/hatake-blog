@@ -37,9 +37,9 @@ params:
   comments: false # コメント機能無し
   hideSummary: false
 
-  homeInfoParams:
-    Title: Hatake Log
-    Content: Codablecash を触りながら学ぶ記録
+  # homeInfoParams は使わない（ヘッダーのロゴと h1 が重複するため。
+  # トップはロゴ + 記事一覧のシンプル構成。タグライン付きに戻す場合は
+  # Title にタグライン文言を入れて復活させる）
 
   # socialIcons は設定しない（SNS連携無し）
 
