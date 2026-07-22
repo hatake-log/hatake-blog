@@ -1,0 +1,25 @@
+{{- /* Xのポストを静的なカードとして表示する（外部JS・外部通信なしの匿名運用向け埋め込み）。
+     引数: user(必須)=アカウント名 / id(必須)=ポストID / name=表示名 / date=投稿日 /
+           avatar=サイト内に置いたアイコン画像のパス（省略時は頭文字の丸を表示）。
+     本文はショートコードの開始タグと終了タグの間にMarkdownで書く。 */ -}}
+{{- $user := .Get "user" -}}
+{{- $id := .Get "id" -}}
+{{- $name := .Get "name" | default (printf "@%s" $user) -}}
+{{- $date := .Get "date" -}}
+{{- $avatar := .Get "avatar" -}}
+<div class="tweet-card">
+  <div class="tweet-card-header">
+    {{- with $avatar }}
+    <img class="tweet-card-avatar" src="{{ . | relURL }}" alt="" width="44" height="44" loading="lazy">
+    {{- else }}
+    <span class="tweet-card-avatar tweet-card-avatar-fallback" aria-hidden="true">{{ substr $name 0 1 }}</span>
+    {{- end }}
+    <span class="tweet-card-meta">
+      <span class="tweet-card-name">{{ $name }}</span>
+      <span class="tweet-card-user">@{{ $user }}{{ with $date }}<span class="tweet-card-date"> · {{ . }}</span>{{ end }}</span>
+    </span>
+    <span class="tweet-card-x" aria-hidden="true">𝕏</span>
+  </div>
+  <div class="tweet-card-body">{{ .Inner | markdownify }}</div>
+  <a class="tweet-card-link" href="https://x.com/{{ $user }}/status/{{ $id }}" target="_blank" rel="noopener noreferrer">Xで元のポストを見る ↗</a>
+</div>

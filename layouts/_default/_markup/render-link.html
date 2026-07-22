@@ -1,0 +1,4 @@
+{{- /* 外部リンク（http/httpsで始まるリンク）は別タブで開き、参照元情報も送らない */ -}}
+{{- $isExternal := or (hasPrefix .Destination "http://") (hasPrefix .Destination "https://") -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text }}</a>
+{{- /* 末尾の改行を出さない */ -}}

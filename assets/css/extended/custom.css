@@ -5,6 +5,7 @@
     --accent-cream-border: #eddfa9; /* タグの枠線 */
     --accent-cream-text: #6f6134;   /* クリーム地の上の文字色 */
     --accent-dot: #fcdb46;          /* 見出しの丸 */
+    --accent-h3: #5c5640;           /* h3 の文字色（イエロー寄りのグレー、本文と補助グレーの中間の濃さ） */
 }
 
 :root[data-theme="dark"] {
@@ -13,6 +14,7 @@
     --accent-cream-border: rgba(242, 214, 107, 0.30);
     --accent-cream-text: #d9c98a;
     --accent-dot: #edd453;
+    --accent-h3: #c2ba98;
 }
 
 /* 記事下のタグ・タグ一覧ページのタグをクリーム色に */
@@ -38,4 +40,134 @@
     background: var(--accent-dot);
     margin-right: 0.45em;
     vertical-align: 0.12em;
+}
+
+/* ============================================
+   日本語向けタイポグラフィ調整（Zennの実測値を参考）
+   PaperMod は英文前提で行間・余白が詰まり気味なため、記事本文を日本語向けに広げる
+   ============================================ */
+
+/* 日本語フォントを明示（未指定だとOS任せで崩れることがある） */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
+        Meiryo, sans-serif;
+}
+
+/* 本文の行間: 1.6 → 1.9（Zennと同値。日本語はルビ・漢字の密度が高く広めが読みやすい） */
+.post-content {
+    line-height: 1.9;
+    text-autospace: normal; /* 対応ブラウザでは和欧文間に自動でアキが入る */
+}
+
+/* コード内は自動アキを無効化（Zennと同じ扱い） */
+.post-content pre,
+.post-content code {
+    text-autospace: no-autospace;
+}
+
+/* 段落の間隔: 約1.1em → 1.5em（Zennと同値） */
+.post-content p:not(:last-child) {
+    margin-bottom: 1.5em;
+}
+
+/* 見出し上の余白を広げて章の切れ目を分かりやすく（px換算でZenn相当） */
+.post-content h2 {
+    margin-top: 1.8em;
+}
+
+.post-content h3 {
+    margin-top: 2em;
+}
+
+/* h3 見出しの文字色をイエロー寄りのグレーに */
+.post-content h3 {
+    color: var(--accent-h3);
+}
+
+/* ツイート風カード（tweet-card ショートコード用。外部通信なしの静的表示） */
+.tweet-card {
+    margin: 1.5rem 0;
+    padding: 1rem 1.2rem;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.tweet-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    margin-bottom: 0.6rem;
+}
+
+/* テーマの .md-content img（角丸・マージン）より優先させるため親クラス付きで指定 */
+.tweet-card .tweet-card-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+/* アイコン画像が無いときの代替: 頭文字入りのクリーム色の丸 */
+.tweet-card-avatar-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-cream);
+    border: 1px solid var(--accent-cream-border);
+    color: var(--accent-cream-text);
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.tweet-card-meta {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+}
+
+.tweet-card-name {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.tweet-card-user,
+.tweet-card-date {
+    color: var(--secondary);
+    font-size: 0.9em;
+}
+
+.tweet-card-x {
+    margin-left: auto;
+    color: var(--secondary);
+    font-size: 1.1em;
+}
+
+.tweet-card-body {
+    color: var(--content);
+}
+
+.tweet-card-body p {
+    margin: 0 0 0.6rem;
+}
+
+.tweet-card-body p:last-child {
+    margin-bottom: 0;
+}
+
+.tweet-card-link {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-size: 0.85em;
+    color: var(--accent-cream-text);
+    background: var(--accent-cream);
+    border: 1px solid var(--accent-cream-border);
+    border-radius: 999px;
+    padding: 0.2em 0.9em;
+}
+
+.tweet-card-link:hover {
+    background: var(--accent-cream-deep);
 }
