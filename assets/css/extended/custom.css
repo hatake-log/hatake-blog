@@ -85,6 +85,34 @@ body {
     text-autospace: no-autospace;
 }
 
+/* ============================================
+   文字サイズ調整（2026-07-29）
+   テーマ既定は本文18px・コード0.78em（≒14px）で、コードブロックが本文に対して
+   小さすぎるため、本文を一回り下げつつコードブロックを上げて差を縮める
+   ============================================ */
+
+/* 本文: 18px → 16px */
+.post-content {
+    font-size: 16px;
+}
+
+/* インラインコード: 16px×0.95≒15.2px（本文より半歩小さい程度まで拡大） */
+.post-content code {
+    font-size: 0.95em;
+}
+
+/* コードブロック: 14px相当 → 16px×0.96≒15.4px（本文17px時代の見え方を維持） */
+.post-content pre code {
+    font-size: 0.96em;
+}
+
+/* 記事一覧のカバー画像を控えめに（テーマ既定はwidth:100%で縦もフルに出る）。
+   .entry-coverは記事ページのカバーにも使われるため、一覧カード(.post-entry)内に限定する */
+.post-entry .entry-cover img {
+    max-height: 130px;
+    object-fit: contain;
+}
+
 /* 段落の間隔: 約1.1em → 1.5em（Zennと同値） */
 .post-content p:not(:last-child) {
     margin-bottom: 1.5em;
