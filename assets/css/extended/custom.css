@@ -171,6 +171,26 @@ body {
     background: var(--menu-dot-sky);
 }
 
+/* ============================================
+   モバイル向け見出し縮小（2026-07-31・noteの実測値を参考）
+   テーマはモバイルでも見出しサイズが変わらず、375px幅で h2=32px は大きすぎる。
+   noteはスマホ(≤480px)で h2=20px/h3=18px まで落とすが、本文16pxとの
+   差が付きにくいため、ここでは一段大きめ（タイトル28 > h2 24 > h3 20 > 本文16）にする
+   ============================================ */
+@media screen and (max-width: 480px) {
+    .post-title {
+        font-size: 28px; /* テーマ既定 40px */
+    }
+
+    .post-content h2 {
+        font-size: 24px; /* テーマ既定 32px */
+    }
+
+    .post-content h3 {
+        font-size: 20px; /* テーマ既定 24px */
+    }
+}
+
 /* ツイート風カード（tweet-card ショートコード用。外部通信なしの静的表示） */
 .tweet-card {
     margin: 1.5rem 0;
