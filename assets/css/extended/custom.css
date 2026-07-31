@@ -191,6 +191,33 @@ body {
     }
 }
 
+/* 記事内の画像は既定で中央寄せ（テーマは display:block + margin:1rem 0 の左寄せ）。
+   本文幅いっぱいのスクリーンショットには見た目の影響なし。上下マージンはテーマ値を維持 */
+.post-content img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 記事内ロゴ画像用: 濃色の文字を含む透過PNGがダークモードで背景に沈むため、
+   テーマを問わず白地のボックスに載せる */
+.post-content figure.logo-on-white {
+    text-align: center;
+}
+
+.post-content figure.logo-on-white img {
+    background: #fff;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    max-width: min(420px, 100%);
+    /* テーマの .md-content img が display:block + margin:1rem 0 のため、
+       auto マージンで中央寄せにする（figureのtext-alignは効かない） */
+    margin: 1rem auto;
+}
+
+:root[data-theme="dark"] .post-content figure.logo-on-white img {
+    border: 1px solid var(--border);
+}
+
 /* ツイート風カード（tweet-card ショートコード用。外部通信なしの静的表示） */
 .tweet-card {
     margin: 1.5rem 0;
