@@ -1,7 +1,7 @@
 ---
 title: "マイニング初心者の、Deroマイニング【ローカルテストネット】"
 date: 2026-08-08T10:00:00+09:00
-draft: true
+draft: false
 tags: ["Dero", "マイニング"]
 cover:
   image: "images/dero-symbol-cover.png"
