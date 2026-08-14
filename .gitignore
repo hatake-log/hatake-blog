@@ -6,3 +6,6 @@ drafts/
 public/
 resources/_gen/
 .hugo_build.lock
+
+# 用語集アイコンの目視確認用シート(scripts/render_icons.pyが生成)
+scripts/_sheet.png
