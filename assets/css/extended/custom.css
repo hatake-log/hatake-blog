@@ -16,6 +16,7 @@
     /* メニューの丸の色（黄はh2の丸 --accent-dot を流用） */
     --menu-dot-pink: #f79ec0;
     --menu-dot-sky: #7ec8ef;
+    --menu-dot-green: #8fd6a8;
 }
 
 :root[data-theme="dark"] {
@@ -33,6 +34,7 @@
 
     --menu-dot-pink: #e293b6;
     --menu-dot-sky: #79b9dd;
+    --menu-dot-green: #7cc496;
 }
 
 /* 記事下のタグ・タグ一覧ページのタグを水色に */
@@ -139,8 +141,8 @@ body {
 }
 
 /* 右上メニューの項目前に小さな色付きのダイヤ（正方形を45度回転）を置く。
-   記事=黄 / アーカイブ=ピンク / タグ=水色。hugo.yaml のメニュー順に対応しているので、
-   メニューの追加・並べ替え時はここの nth-child も合わせて直すこと */
+   記事=黄 / 用語集=緑 / アーカイブ=ピンク / タグ=水色。hugo.yaml のメニュー順に
+   対応しているので、メニューの追加・並べ替え時はここの nth-child も合わせて直すこと */
 #menu li a span::before {
     content: "";
     display: inline-block;
@@ -164,11 +166,25 @@ body {
 }
 
 #menu li:nth-child(2) a span::before {
-    background: var(--menu-dot-pink);
+    background: var(--menu-dot-green);
 }
 
 #menu li:nth-child(3) a span::before {
+    background: var(--menu-dot-pink);
+}
+
+#menu li:nth-child(4) a span::before {
     background: var(--menu-dot-sky);
+}
+
+/* 用語集記事のアイコン: リスト項目の行内に小さく表示する
+   （テーマ既定の display:block + 中央寄せだと1個ずつ改行されてしまう） */
+.post-content li img[src*="images/terms/"] {
+    display: inline-block;
+    width: 2.2em;
+    height: 2.2em;
+    margin: 0 0.45em 0 0;
+    vertical-align: -0.75em;
 }
 
 /* ============================================

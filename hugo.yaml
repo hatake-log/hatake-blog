@@ -50,14 +50,18 @@ menu:
       name: 記事
       url: /posts/
       weight: 10
+    - identifier: glossary
+      name: 用語集
+      url: /posts/pc-terms-kitchen/
+      weight: 20
     - identifier: archives
       name: アーカイブ
       url: /archives/
-      weight: 20
+      weight: 30
     - identifier: tags
       name: タグ
       url: /tags/
-      weight: 30
+      weight: 40
 
 markup:
   goldmark:
