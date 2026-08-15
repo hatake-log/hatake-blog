@@ -348,6 +348,53 @@ def leaf(d, base, tip, width, color):
         pts.append((bx + ax*t - px*w, by + ay*t - py*w))
     d.polygon(pts, fill=color)
 
+def flame(d, cx, cy, s, color):
+    # 炎: しずく形の輪郭+内側をタイル色でくり抜き(render_wallet_images.pyと共通の形)
+    pts = [(cx, cy - s)]
+    for adeg in range(-70, 251, 15):
+        a = math.radians(adeg)
+        pts.append((cx + 0.62 * s * math.cos(a), cy + 0.38 * s + 0.55 * s * math.sin(a)))
+    d.polygon(pts, fill=color)
+    pts2 = [(cx, cy - 0.30 * s)]
+    for adeg in range(-70, 251, 15):
+        a = math.radians(adeg)
+        pts2.append((cx + 0.30 * s * math.cos(a), cy + 0.48 * s + 0.26 * s * math.sin(a)))
+    d.polygon(pts2, fill=TILE)
+
+
+def snowflake(d, cx, cy, r, color, w=28):
+    # 雪の結晶: 6本のスポーク+枝(render_wallet_images.pyと共通の形)
+    for k in range(6):
+        a = math.radians(k * 60)
+        d.line([cx, cy, cx + r * math.cos(a), cy + r * math.sin(a)], fill=color, width=w)
+        bx, by = cx + 0.58 * r * math.cos(a), cy + 0.58 * r * math.sin(a)
+        for da in (0.6, -0.6):
+            d.line([bx, by, bx + 0.34 * r * math.cos(a + da), by + 0.34 * r * math.sin(a + da)],
+                   fill=color, width=int(w * 0.8))
+
+
+def small_wallet(d):
+    # ホット/コールド用の共通ウォレット(右上にバッジの余白を空けた縮小版)
+    d.rounded_rectangle([140, 330, 700, 730], radius=54, outline=INK, width=W)
+    d.line([140, 430, 700, 430], fill=INK, width=28)
+    d.rounded_rectangle([550, 480, 760, 620], radius=44, outline=INK, width=W - 8)
+    d.ellipse([620, 520, 685, 585], fill=YELLOW)
+
+
+def icon_hot_wallet():
+    img, d = new_tile()
+    small_wallet(d)
+    flame(d, 760, 230, 130, ORANGE)
+    save(img, "hot-wallet")
+
+
+def icon_cold_wallet():
+    img, d = new_tile()
+    small_wallet(d)
+    snowflake(d, 760, 235, 115, BLUE, w=24)
+    save(img, "cold-wallet")
+
+
 def icon_seed():
     img, d = new_tile()
     # 双葉+土
@@ -363,7 +410,8 @@ ICONS = [icon_cpu, icon_core, icon_thread, icon_clock, icon_gpu, icon_asic,
          icon_blockchain, icon_block, icon_transaction, icon_node,
          icon_testnet, icon_privacy_coin,
          icon_pow, icon_nonce, icon_difficulty,
-         icon_private_key, icon_address, icon_wallet, icon_seed]
+         icon_private_key, icon_address, icon_wallet, icon_hot_wallet,
+         icon_cold_wallet, icon_seed]
 
 for fn in ICONS:
     fn()
@@ -372,7 +420,8 @@ for fn in ICONS:
 names = ["cpu", "core", "thread", "clock", "gpu", "asic", "ram", "ram-size",
          "ram-bandwidth", "dual-channel", "optimization", "hashrate", "tdp",
          "blockchain", "block", "transaction", "node", "testnet", "privacy-coin",
-         "pow", "nonce", "difficulty", "private-key", "address", "wallet", "seed"]
+         "pow", "nonce", "difficulty", "private-key", "address", "wallet",
+         "hot-wallet", "cold-wallet", "seed"]
 cols = 6
 rows = (len(names) + cols - 1) // cols
 sheet = Image.new("RGB", (cols * 270 + 30, rows * 310 + 30), "#ffffff")
