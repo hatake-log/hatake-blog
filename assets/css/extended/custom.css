@@ -108,11 +108,51 @@ body {
     font-size: 0.96em;
 }
 
-/* 記事一覧のカバー画像を控えめに（テーマ既定はwidth:100%で縦もフルに出る）。
-   .entry-coverは記事ページのカバーにも使われるため、一覧カード(.post-entry)内に限定する */
+/* ============================================
+   記事一覧カード: カバーを右側の固定サイズサムネイルにする（2026-08-16）
+   テーマ既定はカバーがカード上部に全幅で入るため、画像あり記事だけ縦に伸びて
+   カードの高さがバラバラになる。グリッドで右列に逃がし、高さは本文側で決める。
+   .entry-coverは記事ページのカバーにも使われるため、一覧カード(.post-entry)内に限定する
+   ============================================ */
+.post-entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "header cover"
+        "content cover"
+        "footer cover";
+    column-gap: 16px;
+}
+
+.post-entry .entry-header {
+    grid-area: header;
+}
+
+.post-entry .entry-content {
+    grid-area: content;
+    /* サマリ2行分を常に確保して、画像なし・サマリ短めの記事とも高さを揃える */
+    min-height: calc(2 * 1.6em);
+}
+
+.post-entry .entry-footer {
+    grid-area: footer;
+}
+
+.post-entry .entry-cover {
+    grid-area: cover;
+    align-self: center;
+    margin-bottom: 0;
+}
+
 .post-entry .entry-cover img {
-    max-height: 130px;
-    object-fit: contain;
+    width: 150px;
+    height: auto;
+}
+
+@media screen and (max-width: 480px) {
+    .post-entry .entry-cover img {
+        width: 110px;
+    }
 }
 
 /* 段落の間隔: 約1.1em → 1.5em（Zennと同値） */
@@ -175,6 +215,15 @@ body {
 
 #menu li:nth-child(4) a span::before {
     background: var(--menu-dot-sky);
+}
+
+/* H2直下に置く節アイコン(章扉)。static/images/sections/ の画像が対象。
+   上=h2の下余白24px、下=段落の下余白1.5em(24px)がテーマ側で揃っているので、
+   画像自体には上下マージンを持たせない */
+.post-content img[src*="images/sections/"] {
+    width: 104px;
+    height: 104px;
+    margin: 0 auto;
 }
 
 /* 用語集記事のアイコン: リスト項目の行内に小さく表示する
