@@ -1,4 +1,6 @@
-{{- /* 外部リンク（http/httpsで始まるリンク）は別タブで開き、参照元情報も送らない */ -}}
+{{- /* 外部リンク（http/httpsで始まるリンク）は別タブで開き、参照元情報も送らない。
+       内部リンクもタイトル部分に newtab と書けば別タブで開く（例: [文言](/posts/foo/ "newtab")） */ -}}
 {{- $isExternal := or (hasPrefix .Destination "http://") (hasPrefix .Destination "https://") -}}
-<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text }}</a>
+{{- $newTab := or $isExternal (eq .Title "newtab") -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }}{{ if ne . "newtab" }} title="{{ . }}"{{ end }}{{ end }}{{ if $newTab }} target="_blank"{{ end }}{{ if $isExternal }} rel="noopener noreferrer"{{ else if $newTab }} rel="noopener"{{ end }}>{{ .Text }}</a>
 {{- /* 末尾の改行を出さない */ -}}
