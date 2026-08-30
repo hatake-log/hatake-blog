@@ -1,5 +1,6 @@
 ---
 title: "中古ミニPCでCodablecashを掘れるのか検証してみた"
+slug: "mini-pc-mining-assessment"
 date: 2026-08-14T00:00:00+09:00
 draft: false
 tags: ["Codablecash", "マイニング"]

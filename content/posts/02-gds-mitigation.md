@@ -1,5 +1,6 @@
 ---
 title: "lscpuに一行だけ「Vulnerable」— ミニPCのGDS（Downfall）対策をした話"
+slug: "gds-mitigation"
 date: 2026-07-20T13:30:00+09:00
 draft: false
 tags: ["Linux", "セキュリティ"]

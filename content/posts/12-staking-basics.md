@@ -1,5 +1,6 @@
 ---
 title: "ステーキングとは？参加方式の種類いろいろ"
+slug: "staking-basics"
 date: 2026-08-30T12:00:00+09:00
 draft: false
 tags: ["暗号資産", "ステーキング"]

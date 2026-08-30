@@ -1,5 +1,6 @@
 ---
 title: "用語集（PC・ブロックチェーン関連用語）"
+slug: "pc-terms-kitchen"
 date: 2026-08-14T11:30:00+09:00
 draft: false
 tags: ["用語集"]

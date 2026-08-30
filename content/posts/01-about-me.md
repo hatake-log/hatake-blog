@@ -1,5 +1,6 @@
 ---
 title: "中の人について"
+slug: "about-me"
 date: 2026-07-20T09:00:00+09:00
 draft: false
 tags: ["ブログ"]

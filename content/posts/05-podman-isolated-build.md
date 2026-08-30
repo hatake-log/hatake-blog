@@ -1,5 +1,6 @@
 ---
 title: "CodablecashをPodmanで隔離ビルドした話"
+slug: "podman-isolated-build"
 date: 2026-07-31T00:00:00+09:00
 draft: false
 tags: ["Codablecash", "Linux"]

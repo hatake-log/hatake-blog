@@ -1,5 +1,6 @@
 ---
 title: "暗号資産素人から見たCodablecashの面白さ"
+slug: "codablecash-first-look"
 date: 2026-07-22T09:00:00+09:00
 tags: ["Codablecash"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "ウォレットの種類を整理する"
+slug: "wallet-types"
 date: 2026-08-16T08:50:00+09:00
 draft: false
 tags: ["暗号資産", "セキュリティ"]

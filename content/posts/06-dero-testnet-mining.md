@@ -1,5 +1,6 @@
 ---
 title: "マイニング初心者の、Deroマイニング【ローカルテストネット】"
+slug: "dero-testnet-mining"
 date: 2026-08-08T10:00:00+09:00
 draft: false
 tags: ["Dero", "マイニング"]

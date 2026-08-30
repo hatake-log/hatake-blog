@@ -1,5 +1,6 @@
 ---
 title: "日本円ステーブルコインJPYCを発行して、自分のウォレットの中で動かしてみた"
+slug: "jpyc-hands-on"
 date: 2026-08-22T07:30:00+09:00
 draft: false
 tags: ["JPYC", "ステーブルコイン", "ウォレット"]

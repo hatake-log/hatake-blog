@@ -1,5 +1,6 @@
 ---
 title: "マイニング初心者の、Moneroマイニング【テストネット】"
+slug: "monero-testnet-mining"
 date: 2026-07-29T10:00:00+09:00
 draft: false
 tags: ["Monero", "マイニング"]
