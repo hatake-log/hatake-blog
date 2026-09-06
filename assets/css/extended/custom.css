@@ -263,6 +263,17 @@ body {
     margin-right: auto;
 }
 
+/* 画像キャプション（figureショートコードのcaption）: 画像の下中央に、画像に寄せて表示する。
+   テーマ既定は左寄せで、img下1rem+figcaption上8pxの計24px空くため、画像側の下マージンを詰める */
+.post-content figure > img {
+    margin-bottom: 0.25rem;
+}
+
+.post-content figure > figcaption {
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
 /* 記事内ロゴ画像用: 濃色の文字を含む透過PNGがダークモードで背景に沈むため、
    テーマを問わず白地のボックスに載せる */
 .post-content figure.logo-on-white {
