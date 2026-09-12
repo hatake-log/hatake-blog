@@ -7,6 +7,7 @@
     --accent-dot: #fcdb46;          /* 見出しの丸 */
     --accent-h3: #5c5640;           /* h3 の文字色（イエロー寄りのグレー、本文と補助グレーの中間の濃さ） */
     --caption-band: #fbfbfb;        /* 画像キャプションの帯（白背景よりごくわずかに沈む程度） */
+    --tips-cream-bg: #fef9e6;       /* 「ちなみに」ボックスの背景（タグのクリームより明るめ） */
 
     /* タグ用の水色（記事内のクリームイエローと使い分ける） */
     --accent-sky: #e1f2fa;          /* タグの背景 */
@@ -28,6 +29,7 @@
     --accent-dot: #edd453;
     --accent-h3: #c2ba98;
     --caption-band: rgb(55, 56, 62); /* ダークは --code-bg と同じ */
+    --tips-cream-bg: var(--accent-cream);
 
     --accent-sky: rgba(110, 195, 240, 0.14);
     --accent-sky-deep: rgba(110, 195, 240, 0.24);
@@ -325,6 +327,59 @@ body {
 .post-content figure.logo-on-white > figcaption > p {
     color: var(--secondary);
     font-size: 14px;
+}
+
+/* 「ちなみに」ボックス（tips ショートコード用）: 本文から少し外れる補足を、色付きの箱で目立たせる。
+   既定はクリーム色、color="sky" で水色。枠線なし。水色とダーク時のクリームはタグ用のアクセント変数を流用 */
+.tips {
+    margin: 1.5rem 0;
+    padding: 0.9rem 1.2rem 1rem;
+    border-radius: 12px;
+    background: var(--tips-bg);
+}
+
+.tips-cream {
+    --tips-bg: var(--tips-cream-bg);
+    --tips-title: var(--accent-cream-text);
+}
+
+.tips-sky {
+    --tips-bg: var(--accent-sky);
+    --tips-title: var(--accent-sky-text);
+}
+
+/* テーマの .md-content p:not(:last-child)（段落下マージン20px）より優先させるため .tips を挟む */
+.post-content .tips .tips-title {
+    margin: 0 0 0.4rem;
+    font-size: 0.95em;
+    font-weight: 700;
+    color: var(--tips-title);
+    display: flex;
+    align-items: center;
+    gap: 0.45em;
+}
+
+/* 見出しの前に小さな丸（h2 の黄色い丸と同じ流儀） */
+.tips-title::before {
+    content: "";
+    width: 0.55em;
+    height: 0.55em;
+    border-radius: 50%;
+    background: var(--tips-title);
+    opacity: 0.8;
+}
+
+.post-content .tips .tips-body {
+    font-size: 0.95em;
+    line-height: 1.75;
+}
+
+.post-content .tips .tips-body > p {
+    margin: 0;
+}
+
+.post-content .tips .tips-body > p + p {
+    margin-top: 0.6em;
 }
 
 /* ツイート風カード（tweet-card ショートコード用。外部通信なしの静的表示） */

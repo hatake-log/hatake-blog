@@ -1,0 +1,10 @@
+{{- /* 「ちなみに」ボックス: 本文の流れから少し外れる補足・小ネタを、背景色を変えて目立たせる。
+     引数: title=見出し（省略時「ちなみに」）/ color=cream(既定)|sky
+     本文はショートコードの開始タグと終了タグの間にMarkdownで書く。
+     例: {{< tips >}}…{{< /tips >}} / {{< tips title="つまずきポイント" color="sky" >}}…{{< /tips >}} */ -}}
+{{- $title := .Get "title" | default "ちなみに" -}}
+{{- $color := .Get "color" | default "cream" -}}
+<aside class="tips tips-{{ $color }}">
+  <p class="tips-title">{{ $title }}</p>
+  <div class="tips-body">{{ .Inner | markdownify }}</div>
+</aside>
