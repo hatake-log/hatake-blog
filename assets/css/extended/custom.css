@@ -6,6 +6,7 @@
     --accent-cream-text: #6f6134;   /* クリーム地の上の文字色 */
     --accent-dot: #fcdb46;          /* 見出しの丸 */
     --accent-h3: #5c5640;           /* h3 の文字色（イエロー寄りのグレー、本文と補助グレーの中間の濃さ） */
+    --caption-band: #fbfbfb;        /* 画像キャプションの帯（白背景よりごくわずかに沈む程度） */
 
     /* タグ用の水色（記事内のクリームイエローと使い分ける） */
     --accent-sky: #e1f2fa;          /* タグの背景 */
@@ -26,6 +27,7 @@
     --accent-cream-text: #d9c98a;
     --accent-dot: #edd453;
     --accent-h3: #c2ba98;
+    --caption-band: rgb(55, 56, 62); /* ダークは --code-bg と同じ */
 
     --accent-sky: rgba(110, 195, 240, 0.14);
     --accent-sky-deep: rgba(110, 195, 240, 0.24);
@@ -263,15 +265,34 @@ body {
     margin-right: auto;
 }
 
-/* 画像キャプション（figureショートコードのcaption）: 画像の下中央に、画像に寄せて表示する。
-   テーマ既定は左寄せで、img下1rem+figcaption上8pxの計24px空くため、画像側の下マージンを詰める */
+/* 画像キャプション（figureショートコードのcaption）: 画像の直下に帯状の補足説明として表示する。
+   テーマ既定は左寄せ・14px薄グレーで補足説明として読みにくいため、画像と一体の帯にして
+   文字を本文色・15pxに上げる。キャプション内の **StepN** は markdownify で strong になる */
 .post-content figure > img {
-    margin-bottom: 0.25rem;
+    display: block;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .post-content figure > figcaption {
     text-align: center;
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
+    padding: 0.6em 1em 0.65em;
+    background: var(--caption-band);
+    border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.post-content figure > figcaption > p {
+    margin: 0;
+    color: var(--content);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.post-content figure > figcaption strong {
+    color: var(--accent-cream-text);
+    margin-right: 0.15em;
 }
 
 /* 記事内ロゴ画像用: 濃色の文字を含む透過PNGがダークモードで背景に沈むため、
@@ -292,6 +313,18 @@ body {
 
 :root[data-theme="dark"] .post-content figure.logo-on-white img {
     border: 1px solid var(--border);
+}
+
+/* ロゴ画像は幅が狭く中央寄せなので、帯にせず出典表記だけを控えめに置く */
+.post-content figure.logo-on-white > figcaption {
+    background: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.post-content figure.logo-on-white > figcaption > p {
+    color: var(--secondary);
+    font-size: 14px;
 }
 
 /* ツイート風カード（tweet-card ショートコード用。外部通信なしの静的表示） */
