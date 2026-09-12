@@ -5,7 +5,7 @@ date: 2026-09-05T12:00:00+09:00
 draft: false
 tags: ["暗号資産", "マイニング"]
 cover:
-  image: "images/mining-basics-overview.png"
+  image: "images/mining-basics-overview02.png"
   alt: "マイニングの流れを4コマで描いたイラスト。下書きを用意する、くじ引きをする、当たりを引く、帳簿に新しいページが綴じられる"
 ---
 
@@ -34,7 +34,7 @@ cover:
 
 そして2の「くじ引き」は、引くのに計算が要るという性質を持っています。この計算のことをProof of Work（PoW、直訳すると「働いた証明」）と呼びます。各自が大量に計算して**条件を満たす結果を最初に見つけた人が勝ち**、という仕組みです。
 
-{{< figure src="/images/mining-basics-lottery.png" alt="ヘルメットをかぶった緑のキャラクター3人が、くじ引きの箱に手を入れているイラスト。まわりにはハッシュ値が書かれたくじの紙が散らばっている" caption="Step2：下書き採用戦争！くじ引きで決めます。" >}}
+{{< figure src="/images/mining-basics-lottery02.png" alt="ヘルメットをかぶった緑のキャラクター3人が、くじ引きの箱に手を入れているイラスト。まわりにはハッシュ値が書かれたくじの紙が散らばっている" caption="Step2：下書き採用戦争！くじ引きで決めます。" >}}
 
 ### くじ引きの中身は、ハッシュ計算
 
