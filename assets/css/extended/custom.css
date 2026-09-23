@@ -468,3 +468,30 @@ body {
 .tweet-card-link:hover {
     background: var(--accent-cream-deep);
 }
+
+/* 目次: 画面が十分に広いときだけ本文の右余白に出してスクロールに追従させる。
+   本文幅 720px + 余白 24px×2 = 768px の外側に、幅 260px + 隙間 24px の目次を置ける
+   最小幅が約 1,336px なので 1,340px を境にする。初期状態は閉じていて(TocOpen 未設定)、
+   「目次」をクリックで開く。狭い画面では従来どおり記事冒頭の折りたたみ目次のまま */
+@media (min-width: 1340px) {
+    .post-single details.toc {
+        position: sticky;
+        top: var(--gap);
+        float: right;
+        width: 260px;
+        margin-right: calc(-260px - var(--gap));
+        margin-bottom: 0;
+        max-height: calc(100vh - var(--gap) * 2);
+        overflow-y: auto;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .post-single details.toc .inner {
+        margin: 0 1rem 0 1.2rem;
+    }
+
+    .post-single details.toc li {
+        margin-bottom: 0.35em;
+    }
+}
