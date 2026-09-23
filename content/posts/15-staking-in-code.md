@@ -1,12 +1,12 @@
 ---
 title: "Codablecashのソースコードで、ステーキングの中身を追いかけてみた"
 slug: "staking-in-code"
-date: 2026-08-30T21:00:00+09:00
-draft: true
+date: 2026-09-23T11:55:00+09:00
+draft: false
 tags: ["暗号資産", "ステーキング", "Codablecash"]
 cover:
   image: "images/staking-basics-top.png"
-  alt: "Cocablecashステーキングの仕組み"
+  alt: "Codablecashステーキングの仕組み"
 ---
 
 [前回の記事](/posts/staking-basics/)で、ステーキングとは？という部分がちょっとは理解できたので、今度はコードベースでもっと具体的に理解していこうと思います。
@@ -39,7 +39,7 @@ Codablecashはリリース目前、つまり開発中プロジェクトなので
 3. **購入の検証**：各ノードが`validateFinal`で「ロック額が現在価格以上か」「投票先のノードが（プール運営者によって）登録済みか」を確認する
 4. **成熟待ち**：買ったチケットは256ブロックの間、抽選に出られない
 5. **抽選**：ブロックごとに`TicketVoteSelector`が候補を集め、ブロック高のSHA-256を乱数表にして5枚を選ぶ
-6. **投票**：選ばれた５枚のチケットが指名していた投票ノードが`VoteBlockTransaction`で投票する。5票そろうとブロックが確定
+6. **投票**：選ばれた5枚のチケットが指名していた投票ノードが`VoteBlockTransaction`で投票する。5票そろうとブロックが確定
 7. **報酬**：`BlockRewardCalculator`がマイナーと当選チケットで報酬を頭割り。各シェアの0.5%が投票ノードへの手数料、残りと元本がチケットの返却先アドレスへ
 8. **ミスしたとき**：`RevokeMissedTicket`で元本は全額戻る。ただし投票ノードの台帳にミスが記録され、ミスが続くと抽選に出せる枠（`capacity`）が減る
 
@@ -135,7 +135,7 @@ CodablecashSystemParam::CodablecashSystemParam() {
 
 ```
  手持ちの小切手A ─┐
- 手持ちの小切手B ─┼─→  １枚のチケットを購入するための小切手１枚 (ticketUtxo)
+ 手持ちの小切手B ─┼─→  1枚のチケットを購入するための小切手1枚 (ticketUtxo)
  手持ちの小切手C ─┘    (+お釣りがあれば自分宛ての普通の小切手)
 ``` -->
 
@@ -162,7 +162,7 @@ TrxValidationResult RegisterTicketTransaction::validateFinal(
 
 チケット価格（priceUint）とロック用に差し出した額(amount)を比較して、条件によって「無効」を返す、ということをしています。
 
-`price.compareTo(&amount)`自体は０、１、-1、のいずれかを返すので、それを` > 0`かどうかで分岐しています。
+`price.compareTo(&amount)`自体は0、1、-1、のいずれかを返すので、それを` > 0`かどうかで分岐しています。
 
 簡単に言うと、「コインがチケット価格に足りていないならNOを返す」役割の関数ですね。
 
@@ -282,7 +282,7 @@ void TicketVoteSelector::makeList() {
 	// ・・・・・
 	uint64_t matureHeight = this->height - this->tiketMatureIntervalHeight;  // 今のブロック高 − 256
 	// ・・・・・
-			const VoteTicket* ticket = entry->nextTicket(matureHeight);  // 成熟期を過ぎたチケットの中から１枚出して
+			const VoteTicket* ticket = entry->nextTicket(matureHeight);  // 成熟期を過ぎたチケットの中から1枚出して
 	// ・・・・・
 }
 ```
@@ -312,11 +312,11 @@ void TicketVoteSelector::addList(const VoteTicket *ticket) {
 
 さて、チケット価格が決まり、チケット購入まで進みました。成熟期をすぎたら投票に参加できる土台は十分です。
 
-まず、投票の前提ですが、**ブロックごとの投票に使われるチケットは５枚まで**です。
+まず、投票の前提ですが、**ブロックごとの投票に使われるチケットは5枚まで**です。
 
 先ほど、理想のチケット枚数（ticketIdealNumber）は4万枚、とコードから見つけました。つまり4万枚ほどあるチケットのうち、各投票ノードが差し出した候補の中から、ブロックの投票権を得る「たった5枚」を選ぶ必要があります。
 
-その５枚を選ぶ（抽選する）役割を担うのが、この`TicketVoteSelector`クラスのようです。
+その5枚を選ぶ（抽選する）役割を担うのが、この`TicketVoteSelector`クラスのようです。
 
 <!-- 出てくるワードの確認から。
 
@@ -357,7 +357,7 @@ ByteBuffer* TicketVoteSelector::makebuffer() {
 
 `shabuff = Sha256::sha256(buff, true)` **ブロックの高さをSHA-256でハッシュした32バイト**の乱数表を手に入れました。ここまではまだ乱数表を作っただけで、抽選は行われていませんね。
 
-では、その乱数表からどうやってチケットを選ぶのかというと、同じクラスに`doSelect()`と、`selectFromList()`という関数がありました。２つの関数は以下のような関係になっています。
+では、その乱数表からどうやってチケットを選ぶのかというと、同じクラスに`doSelect()`と、`selectFromList()`という関数がありました。2つの関数は以下のような関係になっています。
 
 - `selectFromList()`：実際に抽選を行う関数
 - `doSelect()`：必要な回数だけ`selectFromList()`を呼び出す
@@ -415,7 +415,7 @@ CodablecashSystemParam::CodablecashSystemParam() {
 
 ### `selectFromList()` 抽選本体
 
-そして、抽選の本体である`selectFromList()`です。`doSelect()`からは以下の２パターンで呼ばれていましたね。
+そして、抽選の本体である`selectFromList()`です。`doSelect()`からは以下の2パターンで呼ばれていましたね。
 
 - `selectFromList(this->expiredList, count, shabuff)` 
 - `selectFromList(this->candidateList, count, shabuff)` 
@@ -474,7 +474,7 @@ bool BlockHeader::isFinalizing(int votePerBlock) const noexcept {
 }
 ```
 
-こうして１ブロックごとの投票が規定数に達すると、ブロックは確定作業へと進みます。
+こうして1ブロックごとの投票が規定数に達すると、ブロックは確定作業へと進みます。
 
 ## `BlockRewardCalculator` 報酬を計算する
 
@@ -530,7 +530,7 @@ void BlockRewardCalculator::calcRewords(uint64_t height, uint16_t zone) noexcept
 - チケット保有者：コインをロックしてチケットを買った人
 - 投票ノード：そのチケットが指名した、実際に投票するノード（プール運営者のノード。自前で立てるなら保有者本人のノード）
 
-この２人に対してどのように報酬が分けられるかは、以下の`calcTicketOwnerBalance()`で計算されていました。
+この2人に対してどのように報酬が分けられるかは、以下の`calcTicketOwnerBalance()`で計算されていました。
 
 ```cpp
 // src_blockchain/bc_block_generator/BlockRewardStakeBase.cpp
@@ -615,7 +615,7 @@ void VoterEntry::handleMissed(int missingLimit) noexcept {
 }
 ```
 
-`voteMissingLimit`の初期値は２にセットされています。
+`voteMissingLimit`の初期値は2にセットされています。
 
 ```cpp
 // src_blockchain/bc/CodablecashSystemParam.cpp
