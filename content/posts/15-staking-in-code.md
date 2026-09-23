@@ -1,5 +1,5 @@
 ---
-title: "Codablecashのソースコードで、ステーキングの中身を追いかけてみた"
+title: "Codablecashのソースコードで、ステーキングの中身を追いかけてみる"
 slug: "staking-in-code"
 date: 2026-09-23T11:45:00+09:00
 draft: false
