@@ -178,7 +178,7 @@ const VoteTicket* VoterEntry::nextTicket(uint64_t matureHeight) noexcept {
 
 `nextTicket()`を見ると、各投票ノードが抽選に出せるのは`list`の**先頭から`capacity`枚まで**のようです。
 
-`capacity`というのは投票ノードごとに持っている枠で、初期値は10。投票を10回成功させるごとに1枠増え、2回続けてミスすると半分に減る、という増減のある枠です（[前回の記事](/posts/staking-in-code/)の`handleVoted`・`handleMissed`）。
+`capacity`というのは投票ノードごとに持っている枠で、初期値は10。投票を10回成功させるごとに1枠増え、2回続けてミスすると半分に減る、という増減のある枠です（[前回の記事](/posts/staking-in-code/)の`handleVoted()`・`handleMissed()`）。
 
 ```cpp
 // src_blockchain/bc/CodablecashSystemParam.cpp
