@@ -102,9 +102,14 @@ body {
     font-size: 16px;
 }
 
-/* インラインコード: 16px×0.95≒15.2px（本文より半歩小さい程度まで拡大） */
+/* インラインコード: 英字は和文より小さく見えるため 0.95em の約1.1倍 → 1.05em（2026-11-08） */
 .post-content code {
-    font-size: 0.95em;
+    font-size: 1.05em;
+}
+
+/* インラインコードの背景: グレー → クリーム（コードブロック pre 内は対象外） */
+.post-content :not(pre) > code {
+    background: var(--accent-cream);
 }
 
 /* コードブロック: 14px相当 → 16px×0.96≒15.4px（本文17px時代の見え方を維持） */

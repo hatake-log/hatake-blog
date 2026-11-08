@@ -414,7 +414,7 @@ AbstractCommandResponse* LoginPubSubCommand::execute(const PubSubId* pubsubId, I
 3. **接続中リストに登録**：`fireExecuteCommand()`で、接続中の相手を管理する`BlochchainP2pManager`に相手を登録してもらう
 4. **MY電話帳に登録**：もらった名刺を別の担当に回して、相手ノードの確認ができたらMY電話帳（`P2pDnsManager`）にも登録
 
-4の「確認」とはなにかというと、「こいつはほんとに接続できるのか？」の確認です。`DnsCheckCommandMessage::checkAndRegister()`で以下のようにしています。
+4の「確認」とはなにかというと、「このノードに接続できるかな？」の確認です。`DnsCheckCommandMessage::checkAndRegister()`で以下のようにしています。
 
 ```cpp
 // src_blockchain_p2p/bc_p2p_processor/DnsCheckCommandMessage.cpp
